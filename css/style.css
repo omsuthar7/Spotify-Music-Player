@@ -1,0 +1,492 @@
+/* --- Google Font Imports --- */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/* --- CSS Variables & Global Resets --- */
+:root {
+    /* Variable to control the visibility of the play button on cards */
+    --play-button-opacity: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Utility class to hide elements, specifically the close button on desktop */
+.close {
+    display: none;
+}
+
+/* --- Base Body Styles --- */
+body {
+    background-color: black;
+    color: white;
+}
+
+/* ============================================= */
+/* |              Layout Structure             | */
+/* ============================================= */
+
+/* Left panel styling */
+.left {
+    width: 25vw;
+    padding: 10px;
+}
+
+/* Right panel styling */
+.right {
+    width: 75vw;
+    margin: 16px 0;
+    position: relative;
+}
+
+
+/* ============================================= */
+/* |         Components & Sections             | */
+/* ============================================= */
+
+/* --- Left Panel: Home & Library --- */
+.home ul li {
+    display: flex;
+    gap: 15px;
+    width: 14px;
+    list-style: none;
+    padding-top: 14px;
+    font-weight: bold;
+}
+
+.library {
+    min-height: 80vh;
+    position: relative;
+}
+
+.heading {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    padding: 23px 14px;
+    font-weight: bold;
+    align-items: center;
+    font-size: 13px;
+}
+
+.heading img {
+    width: 30px;
+}
+
+/* --- Left Panel: Footer --- */
+.footer {
+    display: flex;
+    font-size: 10px;
+    color: grey;
+    gap: 13px;
+    position: absolute;
+    bottom: 0;
+    padding: 10px 0;
+}
+
+.footer a {
+    color: grey;
+    text-decoration: none; 
+}
+
+/* --- Right Panel: Header --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align header items */
+    background-color: rgb(34 34 34);
+}
+
+.header>* {
+    padding: 20px;
+}
+
+/* --- Right Panel: Playlist Cards --- */
+.spotifyPlaylists {
+    padding: 16px;
+}
+
+.spotifyPlaylists h1 {
+    padding: 16px;
+}
+
+.cardContainer {
+    margin: 30px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.card {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #252525;
+    position: relative;
+    transition: all .4s ease-in-out; /* Smoother transition */
+}
+
+.card:hover {
+    background-color: rgb(105, 103, 103);
+    cursor: pointer;
+    /* Show play button on hover */
+    --play-button-opacity: 1;
+}
+
+.card>* {
+    padding-top: 10px;
+}
+
+.card img {
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Play button on playlist cards */
+.play {
+    width: 28px;
+    height: 28px;
+    background-color: #1fdf64;
+    border-radius: 50%;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 88px;
+    right: 17px;
+    opacity: var(--play-button-opacity); /* Controlled by variable */
+    transition: all 0.5s ease-out;
+}
+
+/* --- Header Buttons --- */
+.buttons>* {
+    margin: 0 12px;
+}
+
+.buttons a{
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(156, 148, 148);
+}
+
+.buttons a:hover{
+    color: #1fdf64;
+}
+
+.signupbtn {
+    background-color: transparent; /* More professional look */
+    color: rgb(156, 148, 148);
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.signupbtn:hover {
+    font-size: 17px;
+    color: white;
+    transform: scale(1.05); /* Subtle hover effect */
+}
+
+.loginbtn {
+    background-color: white;
+    border-radius: 21px;
+    color: black;
+    padding: 10px;
+    width: 79px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none; /* Remove default border */
+    transition: all 0.3s ease-in-out;
+}
+
+.loginbtn:hover {
+    font-weight: bold;
+    font-size: 17px;
+    transform: scale(1.05); /* Subtle hover effect */
+}
+
+
+/* --- Bottom Playbar --- */
+.playbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    filter: invert(1);
+    background: #e2d9d9;
+    border-radius: 10px;
+    width: 70vw;
+    padding: 12px;
+    min-height: 40px;
+}
+
+.abovebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Song progress seekbar */
+.seekbar {
+    height: 4px;
+    width: 98%;
+    background: black;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 8px;
+    margin: 6px;
+    cursor: pointer;
+}
+
+/* Circle indicator on the seekbar */
+.circle {
+    width: 13px;
+    height: 13px;
+    border-radius: 13px;
+    background-color: rgb(3, 83, 255);
+    position: relative;
+    bottom: 5px;
+    left: 0%;
+    transition: left 0.5s;
+}
+
+/* Playback control buttons (prev, play, next) */
+.songbuttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.songbuttons img {
+    cursor: pointer;
+}
+
+/* Containers for song info and time */
+.songinfo {
+    color: black;
+    padding: 0 12px;
+    width: 250px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ... for long song titles */
+}
+
+.songtime {
+    width: 125px;
+    color: black;
+    padding: 0 12px;
+}
+
+
+/* Volume control section */
+.timevol {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.range input {
+    cursor: pointer;
+}
+
+/* --- Library Song List --- */
+.songList {
+    height: 544px;
+    overflow: auto;
+    margin-bottom: 44px;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburgerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.songList ul {
+    padding: 0 12px;
+}
+
+.songList ul li {
+    list-style-type: decimal;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    padding: 12px 0;
+    border: 1px solid rgba(146, 143, 143, 0.491);
+    margin: 12px 0;
+    padding: 13px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out; /* Hover effect */
+}
+
+.songList ul li:hover {
+    background-color: #2a2a2a;
+}
+
+.songList .info {
+    font-size: 13px;
+    width: 344px;
+}
+
+.info div {
+    word-break: break-all;
+}
+
+.playnow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playnow span {
+    font-size: 15px;
+    width: 64px;
+    padding: 12px;
+}
+
+
+/* ============================================= */
+/* |         Responsive Design                 | */
+/* ============================================= */
+
+/* --- Tablet and Smaller Desktop Styles (max-width: 1200px) --- */
+@media (max-width: 1200px) {
+    /* Hide the left panel off-screen by default */
+    .left {
+        position: fixed; /* Use fixed for better consistency */
+        left: -120%; /* Start off-screen */
+        transition: all .3s ease-in-out;
+        z-index: 1;
+        width: 373px;
+        background-color: black;
+        padding: 0;
+        height: 100vh;
+        top: 0;
+    }
+
+    /* Make right panel take full width */
+    .right {
+        width: 100vw;
+        margin: 0;
+    }
+
+    /* Adjust playbar and seekbar width for smaller screens */
+    .playbar {
+        width: calc(100vw - 60px); /* Adjusted for better padding */
+    }
+
+    .seekbar {
+        width: calc(100vw - 80px); /* Adjusted for better padding */
+    }
+
+    /* Display the hamburger menu icon */
+    .hamburger {
+        display: block;
+    }
+
+    /* Display the close button inside the left panel */
+    .close {
+        display: block;
+    }
+    .left .close {
+        position: absolute;
+        right: 31px;
+        top: 25px;
+        width: 29px;
+    }
+
+    /* Adjust card width and centering */
+    .card {
+        width: 44vw; /* Adjusted for better grid on tablets */
+    }
+
+    .cardContainer {
+        margin: 0;
+        justify-content: center;
+        max-height: unset;
+        overflow-y: unset;
+        margin-bottom: 35vh; /* Add margin to avoid overlap with playbar */
+    }
+
+    /* Stack time/volume controls vertically */
+    .timevol {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .songinfo,
+    .songtime {
+        width: auto;
+    }
+
+    /* Stack playbar elements vertically */
+    .abovebar {
+        flex-direction: column;
+        gap: 23px;
+        align-items: center;
+    }
+}
+
+/* --- Mobile Styles (max-width: 500px) --- */
+@media (max-width: 500px) {
+    /* Make cards take full width */
+    .card {
+        width: 90vw; /* Use vw for better responsiveness */
+    }
+
+    /* Adjust header padding and button margin */
+    .header {
+        padding: 7px;
+    }
+
+    .header>* {
+        padding: 2px;
+    }
+
+    .buttons>* {
+        margin: 0 6px;
+    }
+
+    .spotifyPlaylists h1 {
+        padding: 4px;
+    }
+
+    /* Adjust left panel to take full screen width when open */
+    .left {
+        width: 100vw;
+    }
+    .library {
+        height: 85vh;
+    }
+}

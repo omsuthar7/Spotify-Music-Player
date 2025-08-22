@@ -1,0 +1,80 @@
+/* * This file contains reusable utility classes for common styling needs
+ * like borders, flexbox alignment, backgrounds, and more.
+ */
+
+/* Adds a red border for debugging layout issues */
+.border {
+    border: 2px solid red;
+    margin: 3px;
+}
+
+/* Flexbox display utility */
+.flex {
+    display: flex;
+}
+
+/* Justifies flex items to the center along the main axis */
+.justify-center {
+    justify-content: center;
+}
+
+/* Aligns flex items to the center along the cross axis */
+.items-center {
+    align-items: center;
+}
+
+/* Sets background to black and text to white */
+.bg-black {
+    background-color: black;
+    color: white;
+}
+
+/* Inverts the colors of an element (useful for making icons white) */
+.invert {
+    filter: invert(1);
+}
+
+/* Sets a dark grey background color, common in the app */
+.bg-grey {
+    background-color: #121212;
+}
+
+/* Applies a standard border radius for rounded corners */
+.rounded {
+    border-radius: 7px;
+}
+
+/* Applies a standard margin of 5px */
+.m-1 {
+    margin: 5px;
+}
+
+/* Applies a standard padding of 10px */
+.p-1 {
+    padding: 10px;
+}
+
+
+/* --- Custom Scrollbar Styling --- */
+
+/* For Webkit browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #333;
+    /* Dark color for the thumb */
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222;
+    /* Dark color for the track */
+}
+
+/* For Firefox */
+* {
+    scrollbar-color: #333 #222;
+    /* thumb and track color */
+}

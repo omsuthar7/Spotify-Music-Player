@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Spotify Clone Project Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        
+        .flowchart-node {
+            border: 2px solid #58508d;
+            background-color: #ffffff;
+            color: #003f5c;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            min-width: 150px;
+        }
+        
+        .flowchart-arrow {
+            position: relative;
+            width: 2px;
+            background-color: #58508d;
+            margin: 0.5rem auto;
+        }
+
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #58508d;
+        }
+        
+        .flowchart-connector-horizontal {
+            position: absolute;
+            height: 2px;
+            background-color: #58508d;
+            top: 50%;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100" style="background-color: #f0f2f5;">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-2" style="color: #003f5c;">Spotify Clone Project</h1>
+            <p class="text-lg md:text-xl" style="color: #58508d;">A Visual Documentation of the Application Architecture</p>
+        </header>
+
+        <!-- Main Grid Layout -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Technology Stack Card -->
+            <div class="lg:col-span-1 md:col-span-2 bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center text-center" style="border-top: 5px solid #ff6361;">
+                <h2 class="text-2xl font-bold mb-4" style="color: #003f5c;">Technology Stack</h2>
+                <p class="mb-6 text-gray-600">Built entirely with foundational web technologies, this project is a pure front-end application.</p>
+                <div class="flex space-x-8 text-4xl">
+                    <div class="text-center">
+                        <span class="font-bold" style="color: #ff6361;">HTML</span>
+                        <p class="text-sm font-light text-gray-500">Structure</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="font-bold" style="color: #bc5090;">CSS</span>
+                        <p class="text-sm font-light text-gray-500">Styling</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="font-bold" style="color: #ffa600;">JS</span>
+                        <p class="text-sm font-light text-gray-500">Logic</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Features Card -->
+            <div class="lg:col-span-2 md:col-span-2 bg-white rounded-lg shadow-lg p-6" style="border-top: 5px solid #ffa600;">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #003f5c;">Core User Features</h2>
+                <p class="text-center mb-6 text-gray-600">The application provides a comprehensive set of features for a seamless music browsing and listening experience.</p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-center"><span class="text-2xl mr-3" style="color: #ffa600;">🎵</span> View and browse a collection of music albums.</li>
+                    <li class="flex items-center"><span class="text-2xl mr-3" style="color: #ffa600;">▶️</span> Play, pause, and skip tracks with intuitive controls.</li>
+                    <li class="flex items-center"><span class="text-2xl mr-3" style="color: #ffa600;">🔊</span> Adjust playback volume and mute audio.</li>
+                    <li class="flex items-center"><span class="text-2xl mr-3" style="color: #ffa600;">💻</span> Experience a fully responsive design for all devices.</li>
+                </ul>
+            </div>
+
+            <!-- File Structure Card -->
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6" style="border-top: 5px solid #bc5090;">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #003f5c;">Project Architecture: File Structure</h2>
+                <p class="text-center mb-8 text-gray-600">The project is organized into a clean and logical directory structure. The application is server-agnostic, fetching music and metadata directly from the `songs/` directory.</p>
+                <div class="flex flex-col md:flex-row justify-around items-start md:items-center space-y-6 md:space-y-0 md:space-x-6">
+                    <!-- Code Files -->
+                    <div class="w-full md:w-1/3">
+                        <h3 class="font-bold text-lg mb-2 text-center" style="color: #58508d;">Source Code</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="font-mono text-sm">📄 index.html</p>
+                            <p class="font-mono text-sm">🎨 css/style.css</p>
+                            <p class="font-mono text-sm">🎨 css/utility.css</p>
+                            <p class="font-mono text-sm">⚙️ js/script.js</p>
+                        </div>
+                    </div>
+                     <!-- Arrow -->
+                    <div class="hidden md:block text-4xl" style="color: #bc5090;">→</div>
+                    <!-- Assets -->
+                    <div class="w-full md:w-1/3">
+                        <h3 class="font-bold text-lg mb-2 text-center" style="color: #58508d;">Assets & Data</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="font-mono text-sm">🖼️ img/ (icons)</p>
+                            <p class="font-mono text-sm">📁 songs/</p>
+                            <div class="pl-4 border-l-2 ml-2 mt-1 border-gray-300">
+                                <p class="font-mono text-sm">🎵 album_name/track.mp3</p>
+                                <p class="font-mono text-sm">🖼️ album_name/cover.jpg</p>
+                                <p class="font-mono text-sm">📝 album_name/info.json</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JS Logic Chart -->
+            <div class="lg:col-span-2 md:col-span-2 bg-white rounded-lg shadow-lg p-6" style="border-top: 5px solid #58508d;">
+                <h2 class="text-2xl font-bold mb-2 text-center" style="color: #003f5c;">The Engine Room: JavaScript Logic</h2>
+                <p class="text-center mb-4 text-gray-600">The application's logic is handled by several key JavaScript functions. This chart illustrates the conceptual importance and role of each primary function in the application's operation.</p>
+                <div class="chart-container">
+                    <canvas id="jsFunctionsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- UI Anatomy Card -->
+            <div class="lg:col-span-1 md:col-span-2 bg-white rounded-lg shadow-lg p-6" style="border-top: 5px solid #003f5c;">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #003f5c;">Anatomy of the UI</h2>
+                <p class="text-center mb-6 text-gray-600">The user interface is divided into two main panels, each containing specific components for navigation and interaction.</p>
+                <div class="space-y-4">
+                    <div class="border-2 rounded-lg p-3" style="border-color: #ff6361;">
+                        <h3 class="font-bold" style="color: #ff6361;">Left Panel</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-600 pl-2">
+                            <li>Home & Search</li>
+                            <li>Your Library (Song List)</li>
+                            <li>Footer Links</li>
+                        </ul>
+                    </div>
+                    <div class="border-2 rounded-lg p-3" style="border-color: #58508d;">
+                        <h3 class="font-bold" style="color: #58508d;">Right Panel</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-600 pl-2">
+                            <li>Header & Navigation</li>
+                            <li>Album Card Container</li>
+                            <li>Main Playbar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Flow Card -->
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6" style="border-top: 5px solid #ff6361;">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #003f5c;">Application Lifecycle Flow</h2>
+                <p class="text-center mb-8 text-gray-600">This flowchart illustrates the sequence of events from the moment the page loads to when a user interacts with the player.</p>
+                <div class="flex flex-col items-center space-y-0">
+                    <div class="flowchart-node">Page Load & Initialization</div>
+                    <div class="flowchart-arrow h-8"></div>
+                    <div class="flowchart-node">Load Default Album & Display All Albums</div>
+                    <div class="flowchart-arrow h-8"></div>
+                    <div class="flowchart-node">Wait for User Interaction</div>
+                    <div class="flowchart-arrow h-8"></div>
+                    <div class="relative w-full flex justify-center">
+                        <div class="flowchart-connector-horizontal w-1/2 left-0"></div>
+                        <div class="flowchart-connector-horizontal w-1/2 right-0"></div>
+                    </div>
+                    <div class="w-full flex justify-around mt-8">
+                        <div class="flex flex-col items-center w-1/3">
+                             <div class="flowchart-arrow h-8 rotate-180"></div>
+                            <div class="flowchart-node">Click Album Card</div>
+                            <div class="flowchart-arrow h-8"></div>
+                            <div class="flowchart-node">Load Album Songs & Play First Track</div>
+                        </div>
+                        <div class="flex flex-col items-center w-1/3">
+                             <div class="flowchart-arrow h-8 rotate-180"></div>
+                            <div class="flowchart-node">Click Song in Library</div>
+                             <div class="flowchart-arrow h-8"></div>
+                            <div class="flowchart-node">Play Selected Track</div>
+                        </div>
+                         <div class="flex flex-col items-center w-1/3">
+                             <div class="flowchart-arrow h-8 rotate-180"></div>
+                            <div class="flowchart-node">Interact with Playbar</div>
+                             <div class="flowchart-arrow h-8"></div>
+                            <div class="flowchart-node">Update Audio State</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function wrapLabel(str, maxWidth) {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length <= maxWidth) {
+                        currentLine += word + ' ';
+                    } else {
+                        lines.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    }
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            }
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            // Chart.js: JS Functions Chart
+            const ctx = document.getElementById('jsFunctionsChart').getContext('2d');
+            const jsFunctionsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'initializeApp',
+                        wrapLabel('getAndDisplaySongs', 16),
+                        'displayAlbums',
+                        'playMusic'
+                    ],
+                    datasets: [{
+                        label: 'Conceptual Importance',
+                        data: [90, 85, 75, 60],
+                        backgroundColor: [
+                            '#ff6361',
+                            '#ffa600',
+                            '#bc5090',
+                            '#58508d'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                             ticks: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
