@@ -128,24 +128,72 @@ const playMusic = (trackName, isPaused = false) => {
 /**
  * Fetches and displays all available albums/playlists as cards on the main page.
  */
+// async function displayAlbums() {
+//     console.log("Fetching and displaying albums...");
+//     // Fetch the list of folders inside the 'songs' directory
+//     let response = await fetch(`/songs/`);
+//     let htmlContent = await response.text();
+//     let tempDiv = document.createElement("div");
+//     tempDiv.innerHTML = htmlContent;
+//     let allAnchors = tempDiv.getElementsByTagName("a");
+//     let cardContainer = document.querySelector(".cardContainer");
+
+//     for (const anchor of allAnchors) {
+//         // Check if the link points to a song folder
+//         if (anchor.href.includes("/songs/") && !anchor.href.includes(".htaccess")) {
+//             // Extract the folder name from the URL
+//             const folderName = anchor.href.split("/").slice(-2)[0];
+
+//             // Fetch the metadata (info.json) for that folder
+//             let metadataResponse = await fetch(`/songs/${folderName}/info.json`);
+//             let metadata = await metadataResponse.json();
+
+//             // Create and append the album card to the container
+//             cardContainer.innerHTML += `
+//                 <div data-folder="${folderName}" class="card">
+//                     <div class="play">
+//                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+//                             <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+//                         </svg>
+//                     </div>
+//                     <img src="/songs/${folderName}/cover.jpg" alt="${metadata.title} Album Cover">
+//                     <h2>${metadata.title}</h2>
+//                     <p>${metadata.description}</p>
+//                 </div>`;
+//         }
+//     }
+
+//     // --- Add a click event listener to each album card ---
+//     Array.from(document.getElementsByClassName("card")).forEach(card => {
+//         card.addEventListener("click", async (event) => {
+//             const folderName = event.currentTarget.dataset.folder;
+//             console.log(`Fetching songs for album: ${folderName}`);
+//             // Load the songs from the clicked album
+//             const songs = await getAndDisplaySongs(`songs/${folderName}`);
+//             // Automatically play the first song of the album if available
+//             if (songs && songs.length > 0) {
+//                 playMusic(songs[0]);
+//             }
+//         });
+//     });
+// }
+
+
+//commit to show aulbums live site
+
 async function displayAlbums() {
-    console.log("Fetching and displaying albums...");
-    // Fetch the list of folders inside the 'songs' directory
-    let response = await fetch(`/songs/`);
-    let htmlContent = await response.text();
-    let tempDiv = document.createElement("div");
-    tempDiv.innerHTML = htmlContent;
-    let allAnchors = tempDiv.getElementsByTagName("a");
+    console.log("Displaying albums");
     let cardContainer = document.querySelector(".cardContainer");
 
-    for (const anchor of allAnchors) {
-        // Check if the link points to a song folder
-        if (anchor.href.includes("/songs/") && !anchor.href.includes(".htaccess")) {
-            // Extract the folder name from the URL
-            const folderName = anchor.href.split("/").slice(-2)[0];
+    // --- START OF FIX ---
+    // Manually list your album folder names here
+    let albumFolders = ["ncs", "cs"]; // Add more folder names like: ["ncs", "cs", "another-album"]
+    // --- END OF FIX ---
 
+    for (const folderName of albumFolders) {
+        try {
             // Fetch the metadata (info.json) for that folder
-            let metadataResponse = await fetch(`/songs/${folderName}/info.json`);
+            let metadataResponse = await fetch(`./songs/${folderName}/info.json`);
             let metadata = await metadataResponse.json();
 
             // Create and append the album card to the container
@@ -156,10 +204,12 @@ async function displayAlbums() {
                             <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <img src="/songs/${folderName}/cover.jpg" alt="${metadata.title} Album Cover">
+                    <img src="./songs/${folderName}/cover.jpg" alt="${metadata.title} Album Cover">
                     <h2>${metadata.title}</h2>
                     <p>${metadata.description}</p>
                 </div>`;
+        } catch (error) {
+            console.error(`Could not load album: ${folderName}`, error);
         }
     }
 
@@ -168,12 +218,7 @@ async function displayAlbums() {
         card.addEventListener("click", async (event) => {
             const folderName = event.currentTarget.dataset.folder;
             console.log(`Fetching songs for album: ${folderName}`);
-            // Load the songs from the clicked album
-            const songs = await getAndDisplaySongs(`songs/${folderName}`);
-            // Automatically play the first song of the album if available
-            if (songs && songs.length > 0) {
-                playMusic(songs[0]);
-            }
+            await getSongs(`songs/${folderName}`);
         });
     });
 }
